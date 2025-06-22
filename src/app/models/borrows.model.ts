@@ -18,7 +18,8 @@ const borrowSchema = new Schema<IBorrow>({
         required: true
     }
 },{
-    timestamps: true
+    timestamps: true,
+    versionKey: false
 })
 
 export const Borrow = model<IBorrow>('Borrow', borrowSchema)
