@@ -35,7 +35,7 @@ booksRoutes.get("/", async(req: Request, res: Response, next: NextFunction) => {
         const filter = req.query.filter ? { genre: req.query.filter } : {};
         const sortBy = (req.query.sortBy as string) || 'createdAt';
         const sortOrder = req.query.sort === 'desc' ? -1 : 1;
-        const limit = req.query.limit ? Number(req.query.limit) : 10;
+        const limit = req.query.limit ? Number(req.query.limit) : 50;
 
         
         const books = await Book.find(filter).sort({ [sortBy]: sortOrder }).limit(limit);
