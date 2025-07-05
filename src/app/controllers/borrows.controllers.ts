@@ -64,12 +64,18 @@ borrowsRoute.get('/', async (req: Request, res: Response, next: NextFunction) =>
             },
             //stage-3
             {
+                $match: {
+                    bookDetails: { $ne: [] }
+                }
+            },
+            // Stage 4: Project final output
+            {
                 $project: {
-                    _id: 0,
-                    book: {
-                        title: { $arrayElemAt: ["$bookDetails.title", 0] },
-                        isbn: { $arrayElemAt: ["$bookDetails.isbn", 0] }
-                    },
+                _id: 0,
+                book: {
+                    title: { $arrayElemAt: ["$bookDetails.title", 0] },
+                    isbn: { $arrayElemAt: ["$bookDetails.isbn", 0] }
+                },
                     totalQuantity: 1
                 }
             }
