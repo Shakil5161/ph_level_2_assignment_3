@@ -63,7 +63,8 @@ booksRoutes.get("/", async (req: Request, res: Response, next: NextFunction) => 
   try {
     const filter = req.query.filter ? { genre: req.query.filter } : {};
     const sortBy = (req.query.sortBy as string) || 'createdAt';
-    const sortOrder = req.query.sort === 'desc' ? -1 : 1;
+    const sortA = req.query.sort === 'asc' || req.query.sort === 'desc' ? req.query.sort : 'desc';
+    const sortOrder = sortA === 'desc' ? -1 : 1;
 
     const page = req.query.page ? parseInt(req.query.page as string, 10) : 1;
     const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : 10;
